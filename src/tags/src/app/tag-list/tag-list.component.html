@@ -1,0 +1,21 @@
+
+
+
+<div class="content" >
+  <div class="tags-content" #result >
+    <div style="display: inline-block!important;" *ngFor="let item of tags">
+      <div *ngIf="item.display">
+        <app-single-tag [text]="item"></app-single-tag>
+      </div>
+    </div>
+    <div *ngIf="nbrRemindElementsToDisplay > 0">
+      <app-single-tag [text]="getElementHide()"></app-single-tag>
+    </div>
+  </div>
+  <app-form-tag (actionTag)="getActionForm($event)"
+  (changeMainTag)="getChangeMainForm($event)" (changeTileTag)="getChangeTitleForm($event)"
+  (removeTagAction)="removeTag($event)">
+
+  </app-form-tag>
+
+</div>

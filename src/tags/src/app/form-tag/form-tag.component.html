@@ -1,0 +1,9 @@
+
+  <div class ="tags-form">
+    <input type="text" name="title" (ngModelChange)="changeTitle($event)" [(ngModel)]="titleTag"><input type="text" name="main-tag"(ngModelChange)="changeMain($event)" [(ngModel)]="mainTag"><br>
+    <input type="text" name="simple-tag" [(ngModel)]="simpleTag">
+    <button name="add-tag" (click)="addTag()">Add tag</button>
+    <button name="remove-tag" (click)="removeTag()">Remove tag</button>
+  </div>
+
+
