@@ -25,6 +25,10 @@ export class TagListComponent implements OnInit {
     });
     this.tagListService.addTag();
   }
+
+  /**
+   * Méthode qui vérifie si le contenu a déborder l'espace ou pas
+   */
   checkNbrRemindElementsTodisplay(): boolean{
     if(this.resultHtmlElement.nativeElement.offsetWidth<this.resultHtmlElement.nativeElement.scrollWidth){
       return true;
@@ -33,6 +37,10 @@ export class TagListComponent implements OnInit {
     }
   }
 
+  /**
+   * Création du Tag reçu par le formulaire
+   * @param action
+   */
   getActionForm(action: any) {
     if(this.checkNbrRemindElementsTodisplay()){
       this.tagListService.newTag(action, false)
@@ -42,6 +50,10 @@ export class TagListComponent implements OnInit {
     }
   }
 
+  /**
+   * Création du Titre reçu par le formulaire
+   * @param action
+   */
   getChangeTitleForm(action: any){
     this.tagListService.updateTitleTag(action)
     if(!this.checkNbrRemindElementsTodisplay()){
@@ -56,6 +68,10 @@ export class TagListComponent implements OnInit {
     }
   }
 
+  /**
+   * Création du Tag principal reçu par le formulaire
+   * @param action
+   */
   getChangeMainForm(action: any){
     this.tagListService.updateMainTag(action)
     if(!this.checkNbrRemindElementsTodisplay()){
@@ -66,6 +82,10 @@ export class TagListComponent implements OnInit {
     }
   }
 
+  /**
+   * Supprime le dernier tag
+   * @param action
+   */
   removeTag(action: any){
     this.tagListService.deleteLastTag();
     if(this.checkNbrRemindElementsTodisplay()){
@@ -75,6 +95,9 @@ export class TagListComponent implements OnInit {
     }
   }
 
+  /**
+   * Création d'un objet contenant le nombre de Tags non affiché
+   */
   getElementHide(){
     return {
       id: this.tags.length,

@@ -21,17 +21,35 @@ export class FormTagComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  /**
+   * Expose le tag créée dans le formulaire
+   */
   addTag(){
     this.actionTag.emit(
       this.simpleTag
     )
   }
+
+  /**
+   * Lance l'action de suppression d'un tag
+   */
   removeTag(){
     this.removeTagAction.emit('delete')
   }
+
+  /**
+   * Lance l'action de modification de titre de tag
+   * @param data
+   */
   changeTitle(data: any){
     this.changeTileTag.emit(data);
   }
+
+  /**
+   * Lance l'action de modification de tag principal
+   * @param data
+   */
   changeMain(data: any){
     this.changeMainTag.emit(data);
   }

@@ -7,13 +7,12 @@ import { Subject } from 'rxjs';
 export class TagListService {
 
 
-  //Les tags sont des propriété privée au service et toute modification est gérer par la relation Subject/subscription
   private tags : any[];
   tagsSubject : Subject<any[]>;
 
   constructor() {
 
-    //Les tags ont des id pour prendre en considération la performance lors de l'ajout ou supprission d'un élément à l'aide de trakedby de la directive ngfor
+    // initialisation des tags
     this.tags = [
       {
         id: 0,
@@ -30,18 +29,37 @@ export class TagListService {
     ];
     this.tagsSubject = new Subject<any[]>();
   }
+
+  /**
+   * Push data du tableau de tag vers le subscriber du tag
+   */
   addTag(){
     this.tagsSubject.next(this.tags.slice());
   }
+
+  /**
+   * Modifier le tag Title
+   * @param newValue
+   */
   updateTitleTag(newValue : string): void{
     this.tags[0].content = newValue;
     this.addTag();
   }
+
+  /**
+   * Modifier le premier Tag
+   * @param newValue
+   */
   updateMainTag(newValue : string): void{
     this.tags[1].content = newValue;
     this.addTag();
   }
-  //methode pour créer une nouvelle tag
+
+  /**
+   * Création d'un nouveau tag
+   * @param newTagValue
+   * @param display
+   */
   newTag(newTagValue : string, display: boolean): void{
     this.tags.push({
       id: this.tags.length,
@@ -51,6 +69,10 @@ export class TagListService {
     });
     this.addTag();
   }
+
+  /**
+   * Faire apparaître le premier tag non affiché
+   */
   updateFirstHide(): void{
     const data = this.tags.filter(x => x.display === false)
     if(data.length> 0){
@@ -61,6 +83,9 @@ export class TagListService {
 
   }
 
+  /**
+   * Faire camoufler le dernier Tag
+   */
   updateLastShow(): void{
     const data = this.tags.filter(x => x.display === true)
     if(data.length> 0){
@@ -71,7 +96,9 @@ export class TagListService {
 
   }
 
-  //methode pour supprimer le dernier tag
+  /**
+   * Méthode pour suprimer le dernier tag
+   */
   deleteLastTag(): void{
     this.tags.pop();
     this.addTag();
